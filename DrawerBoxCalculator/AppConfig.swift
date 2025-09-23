@@ -9,17 +9,19 @@ import Foundation
 
 struct AppConfig {
     // MARK: - Server Configuration
-    // Replace these URLs with your actual server endpoints
+    // Using GitHub raw content URLs to serve JSON files directly
     
     #if DEBUG
-    static let baseURL = "https://your-dev-server.com/api/hardware"
+    // For development, you can use a local server for testing
+    // static let baseURL = "http://localhost:3000/api/hardware"
+    static let baseURL = "https://raw.githubusercontent.com/GabrielVicente/DrawerBoxCalculator/main"
     #else
-    static let baseURL = "https://your-production-server.com/api/hardware"
+    static let baseURL = "https://raw.githubusercontent.com/GabrielVicente/DrawerBoxCalculator/main"
     #endif
     
     // MARK: - API Endpoints
-    static let hardwareDataEndpoint = "/data"
-    static let versionCheckEndpoint = "/version"
+    static let hardwareDataEndpoint = "/server_data.json"
+    static let versionCheckEndpoint = "/version.json"
     
     // Full URLs
     static let hardwareDataURL = baseURL + hardwareDataEndpoint
