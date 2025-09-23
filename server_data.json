@@ -1,0 +1,117 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2025-09-22T20:00:00Z",
+  "undermount": {
+    "Blum": {
+      "Tandem Plus": [
+        {
+          "partNumber": "563",
+          "standardDeductionMM": 21.0,
+          "maxMaterialThicknessMM": 16.0
+        },
+        {
+          "partNumber": "563H",
+          "standardDeductionMM": 21.0,
+          "maxMaterialThicknessMM": 16.0
+        },
+        {
+          "partNumber": "563F",
+          "standardDeductionMM": 24.5,
+          "maxMaterialThicknessMM": 19.05
+        }
+      ],
+      "Movento": [
+        {
+          "partNumber": "769",
+          "standardDeductionMM": 21.0,
+          "maxMaterialThicknessMM": 19.05
+        },
+        {
+          "partNumber": "763",
+          "standardDeductionMM": 21.0,
+          "maxMaterialThicknessMM": 19.05
+        },
+        {
+          "partNumber": "763H",
+          "standardDeductionMM": 21.0,
+          "maxMaterialThicknessMM": 19.05
+        }
+      ]
+    },
+    "Hettich": {
+      "Actro": [
+        {
+          "partNumber": "5D",
+          "standardDeductionMM": 20.0,
+          "maxMaterialThicknessMM": 19.05
+        }
+      ],
+      "Quadro": [
+        {
+          "partNumber": "V6",
+          "standardDeductionMM": 22.0,
+          "maxMaterialThicknessMM": 16.0
+        }
+      ]
+    },
+    "Salice": {
+      "Futura": [
+        {
+          "partNumber": "STD",
+          "standardDeductionMM": 21.0,
+          "maxMaterialThicknessMM": 20.0
+        },
+        {
+          "partNumber": "Push",
+          "standardDeductionMM": 21.0,
+          "maxMaterialThicknessMM": 20.0
+        }
+      ]
+    },
+    "Grass": {
+      "Dynapro": [
+        {
+          "partNumber": "ECO",
+          "standardDeductionMM": 22.0,
+          "maxMaterialThicknessMM": 19.0
+        }
+      ],
+      "Vionaro": [
+        {
+          "partNumber": "V14",
+          "standardDeductionMM": 20.0,
+          "maxMaterialThicknessMM": 16.0
+        }
+      ]
+    }
+  },
+  "sidemount": {
+    "Generic": {
+      "Standard Sidemount": [
+        {
+          "partNumber": "STD",
+          "standardDeductionMM": 12.7,
+          "maxMaterialThicknessMM": 25.4
+        }
+      ]
+    },
+    "Blum": {
+      "Tandem": [
+        {
+          "partNumber": "560H",
+          "standardDeductionMM": 12.7,
+          "maxMaterialThicknessMM": 19.05
+        }
+      ]
+    },
+    "Hettich": {
+      "KA": [
+        {
+          "partNumber": "3320",
+          "standardDeductionMM": 12.7,
+          "maxMaterialThicknessMM": 25.4
+        }
+      ]
+    }
+  }
+}
