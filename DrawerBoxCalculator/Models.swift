@@ -107,25 +107,33 @@ struct DrawerSlide: Identifiable, Hashable, Codable {
     private static var _loadedDefaultHardware: [SlideType: [DrawerSlide]]?
     
     static var undermountSlides: [DrawerSlide] {
-        get async {
-            return await defaultHardware(for: .undermount)
-        }
+        return defaultHardware(for: .undermount)
     }
     
     static var sidemountSlides: [DrawerSlide] {
-        get async {
-            return await defaultHardware(for: .sidemount)
-        }
+        return defaultHardware(for: .sidemount)
     }
     
-    private static func defaultHardware(for type: SlideType) async -> [DrawerSlide] {
+    private static func defaultHardware(for type: SlideType) -> [DrawerSlide] {
         if _loadedDefaultHardware == nil {
-            _loadedDefaultHardware = await HardwareDataManager.shared.loadHardwareData()
+            // For synchronous access, load from plist immediately as fallback
+            _loadedDefaultHardware = loadDefaultHardwareFromPlistFallback()
+            print("[Models] Loaded hardware from plist fallback: \(_loadedDefaultHardware?[type]?.count ?? 0) slides for \(type)")
+            
+            // Also trigger async load for updates
+            Task { @MainActor in
+                let updatedData = await HardwareDataManager.shared.loadHardwareData()
+                _loadedDefaultHardware = updatedData
+                print("[Models] Updated hardware from remote/cache: \(updatedData[type]?.count ?? 0) slides for \(type)")
+                
+                // Trigger UI refresh by posting notification
+                NotificationCenter.default.post(name: Notification.Name("HardwareDataUpdated"), object: nil)
+            }
         }
         return _loadedDefaultHardware?[type] ?? fallbackHardware(for: type)
     }
     
-    private static func loadDefaultHardwareFromPlist() -> [SlideType: [DrawerSlide]] {
+    private static func loadDefaultHardwareFromPlistFallback() -> [SlideType: [DrawerSlide]] {
         guard let path = Bundle.main.path(forResource: "DefaultHardware", ofType: "plist"),
               let data = NSDictionary(contentsOfFile: path) else {
             print("Warning: Could not load DefaultHardware.plist, falling back to hardcoded data")
@@ -214,13 +222,13 @@ struct DrawerSlide: Identifiable, Hashable, Codable {
         }
     }
     
-    static func slides(for type: SlideType) async -> [DrawerSlide] {
+    static func slides(for type: SlideType) -> [DrawerSlide] {
         let builtIn: [DrawerSlide]
         switch type {
         case .undermount:
-            builtIn = await undermountSlides
+            builtIn = undermountSlides
         case .sidemount:
-            builtIn = await sidemountSlides
+            builtIn = sidemountSlides
         }
         return builtIn + loadCustomSlides().filter { $0.type == type }
     }
