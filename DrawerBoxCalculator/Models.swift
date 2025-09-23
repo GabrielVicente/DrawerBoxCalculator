@@ -143,15 +143,26 @@ struct DrawerSlide: Identifiable, Hashable, Codable {
         var result: [SlideType: [DrawerSlide]] = [:]
         
         // Load undermount slides from nested structure: undermount -> manufacturer -> line -> [items]
-        if let undermountDict = data["undermount"] as? [String: [String: [[String: Any]]]] {
+        if let undermountData = data["undermount"] as? [String: Any] {
             var undermountSlides: [DrawerSlide] = []
             
-            for (manufacturer, manufacturerDict) in undermountDict {
-                for (line, itemsArray) in manufacturerDict {
+            for (manufacturer, manufacturerData) in undermountData {
+                guard let manufacturerDict = manufacturerData as? [String: Any] else {
+                    print("[Models] Warning: Could not cast manufacturer data for \(manufacturer)")
+                    continue
+                }
+                
+                for (line, lineData) in manufacturerDict {
+                    guard let itemsArray = lineData as? [[String: Any]] else {
+                        print("[Models] Warning: Could not cast line data for \(manufacturer) - \(line)")
+                        continue
+                    }
+                    
                     for itemDict in itemsArray {
                         guard let partNumber = itemDict["partNumber"] as? String,
                               let standardDeductionMM = itemDict["standardDeductionMM"] as? Double,
                               let maxMaterialThicknessMM = itemDict["maxMaterialThicknessMM"] as? Double else {
+                            print("[Models] Warning: Missing required fields in item: \(itemDict)")
                             continue
                         }
                         
@@ -169,18 +180,31 @@ struct DrawerSlide: Identifiable, Hashable, Codable {
                 }
             }
             result[.undermount] = undermountSlides
+        } else {
+            print("[Models] Warning: Could not load undermount data from plist")
         }
         
         // Load sidemount slides from nested structure: sidemount -> manufacturer -> line -> [items]
-        if let sidemountDict = data["sidemount"] as? [String: [String: [[String: Any]]]] {
+        if let sidemountData = data["sidemount"] as? [String: Any] {
             var sidemountSlides: [DrawerSlide] = []
             
-            for (manufacturer, manufacturerDict) in sidemountDict {
-                for (line, itemsArray) in manufacturerDict {
+            for (manufacturer, manufacturerData) in sidemountData {
+                guard let manufacturerDict = manufacturerData as? [String: Any] else {
+                    print("[Models] Warning: Could not cast manufacturer data for \(manufacturer)")
+                    continue
+                }
+                
+                for (line, lineData) in manufacturerDict {
+                    guard let itemsArray = lineData as? [[String: Any]] else {
+                        print("[Models] Warning: Could not cast line data for \(manufacturer) - \(line)")
+                        continue
+                    }
+                    
                     for itemDict in itemsArray {
                         guard let partNumber = itemDict["partNumber"] as? String,
                               let standardDeductionMM = itemDict["standardDeductionMM"] as? Double,
                               let maxMaterialThicknessMM = itemDict["maxMaterialThicknessMM"] as? Double else {
+                            print("[Models] Warning: Missing required fields in item: \(itemDict)")
                             continue
                         }
                         
@@ -198,6 +222,8 @@ struct DrawerSlide: Identifiable, Hashable, Codable {
                 }
             }
             result[.sidemount] = sidemountSlides
+        } else {
+            print("[Models] Warning: Could not load sidemount data from plist")
         }
         
         return result
