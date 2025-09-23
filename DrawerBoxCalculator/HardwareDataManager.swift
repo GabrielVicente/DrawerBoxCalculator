@@ -12,8 +12,8 @@ import Network
 struct HardwareDataResponse: Codable {
     let version: String
     let lastUpdated: String
-    let undermount: [String: [String: [String: [HardwareItem]]]]
-    let sidemount: [String: [String: [String: [HardwareItem]]]]
+    let undermount: [String: [String: [HardwareItem]]]
+    let sidemount: [String: [String: [HardwareItem]]]
 }
 
 struct HardwareItem: Codable {
