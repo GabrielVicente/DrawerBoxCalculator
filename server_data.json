@@ -42,14 +42,14 @@
       "Actro": [
         {
           "partNumber": "5D",
-          "standardDeductionMM": 20.0,
-          "maxMaterialThicknessMM": 19.05
+          "standardDeductionMM": 21,
+          "maxMaterialThicknessMM": 16
         }
       ],
-      "Quadro": [
+      "Quadro V6": [
         {
-          "partNumber": "V6",
-          "standardDeductionMM": 22.0,
+          "partNumber": "EB20",
+          "standardDeductionMM": 20.0,
           "maxMaterialThicknessMM": 16.0
         }
       ]
@@ -57,30 +57,30 @@
     "Salice": {
       "Futura": [
         {
-          "partNumber": "STD",
-          "standardDeductionMM": 21.0,
-          "maxMaterialThicknessMM": 20.0
-        },
+          "partNumber": "755",
+          "standardDeductionMM": 20.0,
+          "maxMaterialThicknessMM": 16.0
+        }
+      ],
+            "Futura Push": [
         {
-          "partNumber": "Push",
-          "standardDeductionMM": 21.0,
-          "maxMaterialThicknessMM": 20.0
+          "partNumber": "7557",
+          "standardDeductionMM": 20.0,
+          "maxMaterialThicknessMM": 16.0
         }
       ]
     },
     "Grass": {
       "Dynapro": [
         {
-          "partNumber": "ECO",
-          "standardDeductionMM": 22.0,
-          "maxMaterialThicknessMM": 19.0
-        }
-      ],
-      "Vionaro": [
-        {
-          "partNumber": "V14",
-          "standardDeductionMM": 20.0,
+          "partNumber": "16",
+          "standardDeductionMM": 21,
           "maxMaterialThicknessMM": 16.0
+        },
+        {
+          "partNumber": "19",
+          "standardDeductionMM": 25,
+          "maxMaterialThicknessMM": 19.0
         }
       ]
     }
@@ -90,24 +90,6 @@
       "Standard Sidemount": [
         {
           "partNumber": "STD",
-          "standardDeductionMM": 12.7,
-          "maxMaterialThicknessMM": 25.4
-        }
-      ]
-    },
-    "Blum": {
-      "Tandem": [
-        {
-          "partNumber": "560H",
-          "standardDeductionMM": 12.7,
-          "maxMaterialThicknessMM": 19.05
-        }
-      ]
-    },
-    "Hettich": {
-      "KA": [
-        {
-          "partNumber": "3320",
           "standardDeductionMM": 12.7,
           "maxMaterialThicknessMM": 25.4
         }
