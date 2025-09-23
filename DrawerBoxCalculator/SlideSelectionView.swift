@@ -320,6 +320,12 @@ struct SlideSelectionViewInternal: View {
                         // Refresh view when a custom slide is updated
                         refreshID = UUID()
                     }
+                    .onReceive(NotificationCenter.default.publisher(for: Notification.Name("HardwareDataUpdated"))) { _ in
+                        // Refresh view when hardware data is loaded from server
+                        refreshID = UUID()
+                        hardwareDataVersion = UUID()  // Force recomputation of computed properties
+                        print("[SlideSelectionView] Received HardwareDataUpdated notification, refreshing UI")
+                    }
                 }
             }
             .background(Constants.backgroundColor)
